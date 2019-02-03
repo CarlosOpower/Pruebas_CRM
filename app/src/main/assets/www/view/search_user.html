@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+
+
+    <link rel="stylesheet" type="text/css" href="../styles/ionicons.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../styles/framework.css">
+
+
+
+    <link rel="stylesheet" type="text/css" href="../styles/jquery.mobile.icons.min.css" />
+
+    <link rel="stylesheet" href="../styles/jquery.mobile.structure-1.4.5.min.css"/>
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
+
+
+    <script type="text/javascript" src="../js/jquery.blockUI.js"></script>
+
+
+
+    <script>
+        function return_services(){
+            $.unblockUI();
+            location="home_services.html";
+
+        }</script>
+
+
+    <!-- Definiciónn del comportamiento de las tabs -->
+    <script>
+        $(document).ready(function(){
+
+            $('.input-field').sidenav();
+
+
+        })
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+<div id="page-transitions">
+
+    <div data-role="header header-logo-center header-dark " align="center">
+
+        <center>
+            <div style="background-color: black">
+                <img src="images/LOGO_FRAP_DIGITAL_blanco-03.png" width="179">
+            </div>
+        </center>
+
+    </div><!-- /header -->
+
+
+    <nav>
+        <div class="nav-wrapper">
+            <form>
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"><i class="material-icons"> Busqueda </i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+
+
+
+
+    <div id="page-content" class="page-content container">
+
+
+
+
+    </div><!-- /page -->
+
+</div>
+
+
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+
+</html>

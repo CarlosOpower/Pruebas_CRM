@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+
+
+    <!-- Include jQuery Mobile stylesheets -->
+    <!-- Include the jQuery library -->
+    <!-- Include the jQuery Mobile library -->
+
+    <link rel="stylesheet" type="text/css" href="dialogos/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="dialogos/jquery-ui.theme.css">
+
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" type="text/css" href="css/style_forms.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.4.5.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+
+    <script type="text/javascript" src="../scripts/jStorage.js"></script>
+    <script type="text/javascript" src="../../../../../../../../Developer/CRM_Practicas/platforms/android/app/src/main/assets/www/js/jquery.blockUI.js"></script>
+
+    <script src="dialogos/jquery-ui.js"></script>
+
+
+    <script type="text/javascript" src="../model/dataBaseApp.js"></script>
+    <script type="text/javascript" src="../controller/frap_data.js"></script>
+    <script type="text/javascript" src="../objects/frap_object.js"></script>
+
+    <script type="text/javascript" src="../controller/frap_complement.js"></script>
+
+
+
+
+
+    <!--
+    <script>
+		 $(function () {
+
+
+              $("#dialog1").dialog({
+                autoOpen: false,
+                modal: true,
+                dialogClass: "dlg-no-close",
+                open: function() {
+                        $('.ui-widget-overlay').addClass('custom-overlay');
+                    }
+              });
+
+        });
+	</script>
+-->
+    <style>
+
+		.ui-dialog-titlebar {
+		  display: none;
+		}
+
+
+		.ui-dialog .ui-dialog-content {
+			border: 0 none;
+		}
+
+		.ui-widget-overlay.custom-overlay
+		{
+			background-color: black;
+			background-image: none;
+			opacity: 0.7;
+			z-index: 1040;
+		}
+
+
+		.dlg-no-close {
+			text-align: center;
+			background-color:white;
+			border: 0 none;
+		}
+
+		.dlg-no-close .ui-dialog-titlebar-close {
+			display: none;
+		}
+
+	</style>
+
+</head>
+
+
+
+<body>
+
+<!-- =============================================== -->
+<!-- Seccion que nos permite visualizar el dialogo para
+           seleccionar el tipo de datos a ingresar   -->
+<!-- =============================================== -->
+
+<div style="background-color:rgba(0, 0, 0, 0.0); display: none; height: 390px; padding-bottom: -5px;"  id="dialog1" >
+
+    <div style="color: white; background-color:gray;  border-bottom: 1px solid; border-bottom-color: gray; height: 30px; padding-bottom: -5px;">
+        <p style="text-align: center; color: white;">Elije los datos del FRAP</p>
+    </div>
+
+    <div style="background-color:WhiteSmoke; border-bottom: 1px solid; border-bottom-color: gray;">
+        <div  style="width: 110px; margin: 0 auto;">
+            <img onclick="frap_primarios();" src="iconos/GRISES/Iconos_grises-g.png" width=110 >
+        </div>
+        <p style="text-align: center;">Datos Obligatorios</p>
+    </div>
+
+    <div style="background-color:WhiteSmoke; border-bottom: 1px solid; border-bottom-color: gray;">
+        <div  style="width: 110px; margin: 0 auto;">
+            <img onclick="frap_secundarios();" src="iconos/GRISES/Iconos_grises-27.png" width=110 >
+        </div>
+        <p style="text-align: center;">Datos Complementarios</p>
+    </div>
+
+
+</div>
+
+
+
+<!-- =============================================== -->
+<!-- Seccion queibuja la cabecera de cada sección
+           seleccionar el tipo de datos a ingresar   -->
+<!-- =============================================== -->
+
+<div style="background-color: black;">
+    <!-- <img src="images/icons-menu/Atras_Principal.png" style="width: 5%; padding-top: 10px;"/> -->
+    <img onclick="menu_datos();" src="images/icons-menu/Menu_Principal.png" style="width: 5%; padding-top: 10px; padding-left: 10px;"/>
+    <img onclick="homeVehicules();" src="images/icons-menu/home1.png" style="width: 5%; float: right; padding-top: 10px; padding-right: 10px; "/>
+</div>
+<div class="cabecera" style="">
+
+    <div class="element-head" style="background: #E67F22; " id="menu-insumos-basicos" data-state="q1" onclick="deltaZ('click', 'insumos_basicos', 'menu-insumos-basicos', $(this).attr('data-state'))">
+        <div class="menu-icon">
+            <img src="images/icons-menu/Insumos1.png"/>
+        </div>
+        <span style="color: white;">Insumos Básicos</span>
+    </div>
+    <div class="element-head" style="background: #C1392B; " id="menu-insumos-intermedios" data-state="q1" onclick="deltaZ('click', 'insumos_intermedios', 'menu-insumos-intermedios',  $(this).attr('data-state'))">
+        <div class="menu-icon">
+            <img src="images/icons-menu/Insumos_Intermedios1.png"/>
+        </div>
+        <span style="color: white;">Insumos intermedios</span>
+    </div>
+    <div class="element-head" style="background: #8F44AD;" id="menu-insumos-avanzados" data-state="q1" onclick="deltaZ('click', 'insumos_avanzados', 'menu-insumos-avanzados',  $(this).attr('data-state'))">
+        <div class="menu-icon">
+            <img src="images/icons-menu/Insumos_Avanzados1.png"/>
+        </div>
+        <span style="color: white;">Insumos Avanzados</span>
+    </div>
+    <div class="element-head" style="background: #2D3E50;" id="menu-medicamentos" data-state="q1" onclick="deltaZ('click', 'medicamentos', 'menu-medicamentos',  $(this).attr('data-state'))">
+        <div class="menu-icon">
+            <img src="images/icons-menu/Medicamentos1.png"/>
+        </div>
+        <span style="color: white;">Medicamentos</span>
+    </div>
+    <div class="element-head" style="background: #BEC3C7;" id="menu-signos" data-state="q1" onclick="deltaZ('click', 'signos', 'menu-signos',  $(this).attr('data-state'))">
+        <div class="menu-icon">
+            <img src="images/icons-menu/Signos1.png"/>
+        </div>
+        <span style="color: white;">Signos</span>
+    </div>
+
+</div>
+<div class="cuerpo" id="content-menu">
+    <iframe src=""  frameborder="0" seamless="" id="frameDemo"></iframe>
+</div>
+</body>
+
+
+
+<script>
+
+    var iframe;
+
+    function frap_primarios(){
+        $.unblockUI();
+        location="frap.html";
+
+    }
+    function frap_secundarios(){
+        $.unblockUI();
+        location="frap_complement.html";
+
+    }
+
+    function menu_datos(){
+        /*
+        $.blockUI({
+        message: $('#dialog1')
+        });
+        */
+
+        $("#dialog1").dialog('open');
+
+    }
+
+    function homeVehicules(){
+        location="home_vehicules.html";
+    }
+
+
+    /*$('#frameDemo').load(function(){
+
+    var iframe = $('#frameDemo').contents();
+
+    iframe.find("#boton2").click(function(){
+
+    $( "#menu-element-3" ).toggle( "slide" );
+    $( "#menu-element-1" ).toggle( "slide", function() {
+
+    $("#menu-element-3").css('display','block');
+    $("#menu-element-1").css('display','block');
+    });
+
+    });
+    });*/
+
+    $( document ).ready(function() {
+
+
+        //////////////////////////////////////////////////////
+        //        Algoritmo creado por la Z                 //
+        //////////////////////////////////////////////////////
+
+        // Paso 1: Inicializamos variables YA definidad por la carga de los archivos JS
+
+        id_sesion  = $.jStorage.get("id_sesion");
+        id_usuario  = $.jStorage.get("id_usuario");
+        estado = $.jStorage.get("estado");
+
+        idFRAP = $.jStorage.get("idFRAP");
+        idService = $.jStorage.get("idService");
+
+        isNew = $.jStorage.get("isNew");
+        estado_frap = $.jStorage.get("estado_frap");
+        estado_secciones = $.jStorage.get("estado_secciones"); // MOST IMPORTANT ***
+
+
+
+        console.log('valores de diagrama de flujo ');
+
+        console.log('isNew'+isNew);
+        console.log('estado_frap ' + estado_frap);
+
+        $.each(estado_secciones, function (key, value){
+            console.log('estado_secciones ' + key + value);
+        });
+
+
+        // Paso 2 : Inicializar el objeto frap, para que sea factible el envio en todo momemnto
+        frap.secciones.init();
+
+
+        // Paso 2.5 : Inicializamos todas las demas variables a defoutl
+
+        dataBase.openDb();
+
+        // Be careful !!!!!
+        // cuando cargue fraps OFFline debe cargar el valor de la base detos como defoult
+        //$.jStorage.set("motivo_atencion", String('trauma'),{});
+
+        var alto = $(window).height();
+        var elementMenu = alto/5;
+        $('.cabecera').height(elementMenu);
+        $('.element-head').height(elementMenu);
+        $('.cuerpo').height(alto - elementMenu);
+        $('#frameDemo').height(alto - elementMenu);
+        $('#frameDemo').css('width','100%');
+
+
+
+        // Paso 3: iteramos sobre la variable que tiene el estado de las secciones para cargar lo factible de ser cargado
+        $.each(estado_secciones, function (key, value){
+            if(value == 1){
+                console.log('recuperando'+key);
+                frap.recuperacion[key]();
+            }
+
+        });
+
+
+        //$('#frameDemo').css('pointer-events', 'none');
+
+    });
+
+
+
+    $('#frameDemo').load(function(){
+
+        iframe = $('#frameDemo').contents();
+
+
+        iframe.find("#btnNext1").click(function()
+        {
+            dataBase.borrarRegistro('INSUMOS_NIVEL_BASICO', " WHERE ID_FRAP = "+idFRAP+" and TIPO_FRAP='"+tipoFRAP+"' ");
+            guardar_insumosBasico();
+            deltaZ('slide', 'insumos_basicos', 'menu-insumos-basicos', iframe.find("#btnNext1").attr('data-state'))
+        });
+
+        iframe.find("#btnNext2").click(function()
+        {
+            dataBase.borrarRegistro('INSUMOS_NIVEL_INTERMEDIO', " WHERE ID_FRAP = "+idFRAP+" and TIPO_FRAP='"+tipoFRAP+"' ");
+            guardar_insumosMedio();
+            deltaZ('slide', 'insumos_intermedios', 'menu-insumos-intermedios', iframe.find("#btnNext2").attr('data-state'))
+        });
+
+        iframe.find("#btnNext3").click(function()
+        {
+            dataBase.borrarRegistro('INSUMOS_NIVEL_AVANZADO', " WHERE ID_FRAP = "+idFRAP+" and TIPO_FRAP='"+tipoFRAP+"' ");
+            guardar_insumosAvanzado();
+            deltaZ('slide', 'insumos_avanzados', 'menu-insumos-avanzados', iframe.find("#btnNext3").attr('data-state'))
+        });
+
+        iframe.find("#btnNext4").click(function()
+        {
+            dataBase.borrarRegistro('MEDICAMENTOS', " WHERE ID_FRAP = "+idFRAP+" and TIPO_FRAP='"+tipoFRAP+"' ");
+            guardar_medicamentos();
+            deltaZ('slide', 'medicamentos', 'menu-medicamentos', iframe.find("#btnNext4").attr('data-state'))
+        });
+
+        iframe.find("#btnNext5").click(function()
+        {
+            dataBase.borrarRegistro('REGISTRO_SIGNOS_VITALES', " WHERE ID_FRAP = "+idFRAP+" and TIPO_FRAP='"+tipoFRAP+"' ");
+            guardar_medicamentos();
+        });
+
+    });
+
+
+    var menuArray = ["menu-insumos-basicos", "menu-insumos-intermedios", "menu-insumos-avanzados", "menu-medicamentos", "menu-signos"];
+    var hashNavigation = {insumos_basicos:"insumos_intermedios", insumos_intermedios:"insumos_avanzados", insumos_avanzados: "medicamentos", medicamentos: "signos"};
+    var hashMenu = {'menu-insumos-basicos':"menu-insumos-intermedios", 'menu-insumos-intermedios': "menu-insumos-avanzados", 'menu-insumos-avanzados': "menu-medicamentos",'menu-medicamentos': "menu-signos" };
+
+
+</script>
+
+</html>
